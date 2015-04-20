@@ -1,0 +1,5 @@
+//(c) Chris Adams 2015 - Uinversity of Leeds.
+
+//Constants
+
+`define osc_bit_depth 16

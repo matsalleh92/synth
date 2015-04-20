@@ -1,0 +1,28 @@
+//(c) Chris Adams 2015 - Uinversity of Leeds.
+
+//This module approximates a sine wave using a ROM initialised with a half sine
+
+`include "constants.v"
+
+module sine_approx(input clk, input [`OSC_DEPTH-1:0] angle,
+output reg [`OSC_DEPTH-1:0] amp);
+	
+	//We take incoming angle and mod it, value in this register (one tick delay)
+	reg [`OSC_DEPTH-1:0] addr_mod;
+	
+	//This is the output of the memory, needs correcting for full sine wave
+	wire [`OSC_DEPTH-1:0] half_sine_amp;
+	
+	//Half sine memory instantiation
+	S1 sine(.address(addr_mod), .clock(clk), .q(half_sine_amp));
+	
+	//Main process for working out full sine
+	always @(posedge clk)
+	begin
+		//We can strip the top bit because its not used (we only use 15 bits of our 16 bit memory)
+		amp <= half_sine_amp[`OSC_DEPTH-2:0] + (`OSC_AMP_MAX/2);
+	
+		addr_mod <= angle % `HALF_SINE_WORDS;
+	end
+
+endmodule

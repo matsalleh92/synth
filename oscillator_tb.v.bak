@@ -1,0 +1,31 @@
+//This file is a test bench for the oscillator
+`include "constants.v"
+
+module oscillator_tb;
+
+	reg clk100;
+	reg [`OSC_F_WIDTH-1:0] frequency;
+	
+	wire [`OSC_DEPTH-1:0] voltage;
+
+	OSC0 oscillator(.clk(clk100), .f(frequency), .v(voltage));
+	
+	//Generate a clock
+	always
+	begin
+		#5 clk100 <= 1;
+		#5 clk100 <= 0; 
+	end
+	
+	//Sweep frequency
+	reg i; 
+	initial
+	begin
+		for(i = 0; i < $size(frequency); i = i + 1)
+		begin
+			@(posedge clk100) frequency <= i; 
+			#1000	;
+		end
+	end
+	
+endmodule
