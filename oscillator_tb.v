@@ -22,11 +22,11 @@ module oscillator_tb;
 	reg [`OSC_WIDTH-1:0] i = 1; 
 	initial
 	begin
-		for(i = 25; i < 79; i = i + 1)
+		for(i = 25; i <= 79; i = i + 1)
 		begin
 			@(posedge clk100) key <= i; 
 			$display("Key is is %d\n", i);
-			#100e3;
+			#1000e3;
 		end
 
 	end

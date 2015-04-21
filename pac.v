@@ -2,7 +2,7 @@
 
 //Phase accumulator
 
-module pac(input clk, input `osc2pac_t f, output reg `pac2sine_approx_t angle);
+module pac(input clk, input `osc2pac_t f, output reg `pac2sine_approx_t angle = 0);
 
 	//Generate a clock enable first
 
