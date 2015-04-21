@@ -5,11 +5,11 @@
 module oscillator_tb;
 
 	reg clk100;
-	reg [`OSC_WIDTH-1:0] frequency;
+	reg `key_t key;
 	
 	wire [`OSC_DEPTH-1:0] voltage;
 
-	oscillator OSC0(.clk(clk100), .f(frequency), .v(voltage));
+	oscillator OSC0(.clk(clk100), .k(key), .v(voltage));
 	
 	//Generate a clock
 	always
@@ -22,14 +22,12 @@ module oscillator_tb;
 	reg [`OSC_WIDTH-1:0] i = 1; 
 	initial
 	begin
-		for(i = 0; i < (2**`OSC_WIDTH)-1; i = i + 1)
+		for(i = 25; i < 79; i = i + 1)
 		begin
-			@(posedge clk100) frequency <= i; 
-			$display("Frequency is %dHz\n", i);
+			@(posedge clk100) key <= i; 
+			$display("Key is is %d\n", i);
 			#100e3;
 		end
-
-	//frequency <= 2475; //10kHz
 
 	end
 	

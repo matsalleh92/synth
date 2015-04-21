@@ -1,5 +1,5 @@
 Analysis & Elaboration report for synth
-Thu Apr 16 19:46:08 2015
+Tue Apr 21 15:04:10 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -41,7 +41,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                       ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Elaboration Status      ; Successful - Thu Apr 16 19:46:08 2015           ;
+; Analysis & Elaboration Status      ; Successful - Tue Apr 21 15:04:10 2015           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; synth                                           ;
 ; Top-level Entity Name              ; synth                                           ;
@@ -69,13 +69,13 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Elaboration IP Cores Summary                                                                                                                      ;
-+--------+--------------+---------+--------------+--------------+------------------------------------------------------------------+---------------------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                                                  ; IP Include File           ;
-+--------+--------------+---------+--------------+--------------+------------------------------------------------------------------+---------------------------+
-; Altera ; ROM: 1-PORT  ; 13.0    ; N/A          ; N/A          ; |synth|oscillator_tb:OTB|oscillator:OSC0|sine_approx:SA0|sine:S1 ; C:/Users/elca/FPGA/sine.v ;
-+--------+--------------+---------+--------------+--------------+------------------------------------------------------------------+---------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Elaboration IP Cores Summary                                                                                                                                      ;
++--------+--------------+---------+--------------+--------------+------------------------------------------------------------------+-------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                                                  ; IP Include File                           ;
++--------+--------------+---------+--------------+--------------+------------------------------------------------------------------+-------------------------------------------+
+; Altera ; ROM: 1-PORT  ; 13.0    ; N/A          ; N/A          ; |synth|oscillator_tb:OTB|oscillator:OSC0|sine_approx:SA0|sine:S1 ; C:/Users/elca/Desktop/GitHub/synth/sine.v ;
++--------+--------------+---------+--------------+--------------+------------------------------------------------------------------+-------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -269,7 +269,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Elaboration
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Thu Apr 16 19:46:07 2015
+    Info: Processing started: Tue Apr 21 15:04:09 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off synth -c synth --analysis_and_elaboration
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file pll_50_100o.v
@@ -285,13 +285,70 @@ Info (12021): Found 1 design units, including 1 entities, in source file oscilla
     Info (12023): Found entity 1: oscillator
 Info (12021): Found 1 design units, including 1 entities, in source file oscillator_tb.v
     Info (12023): Found entity 1: oscillator_tb
+Info (12021): Found 1 design units, including 1 entities, in source file pac.v
+    Info (12023): Found entity 1: pac
 Info (12127): Elaborating entity "synth" for the top level hierarchy
 Info (12128): Elaborating entity "oscillator_tb" for hierarchy "oscillator_tb:OTB"
+Warning (10230): Verilog HDL assignment warning at oscillator_tb.v(27): truncated value with size 13 to match size of target (7)
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    25\n
+Warning (10230): Verilog HDL assignment warning at oscillator_tb.v(25): truncated value with size 32 to match size of target (13)
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    26\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    27\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    28\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    29\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    30\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    31\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    32\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    33\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    34\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    35\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    36\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    37\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    38\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    39\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    40\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    41\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    42\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    43\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    44\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    45\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    46\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    47\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    48\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    49\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    50\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    51\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    52\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    53\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    54\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    55\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    56\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    57\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    58\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    59\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    60\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    61\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    62\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    63\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    64\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    65\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    66\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    67\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    68\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    69\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    70\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    71\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    72\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    73\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    74\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    75\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    76\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    77\n
+Info (10648): Verilog HDL Display System Task info at oscillator_tb.v(28): Key is is    78\n
 Info (12128): Elaborating entity "oscillator" for hierarchy "oscillator_tb:OTB|oscillator:OSC0"
-Warning (10230): Verilog HDL assignment warning at oscillator.v(24): truncated value with size 32 to match size of target (18)
-Warning (10230): Verilog HDL assignment warning at oscillator.v(25): truncated value with size 32 to match size of target (18)
-Warning (10230): Verilog HDL assignment warning at oscillator.v(35): truncated value with size 32 to match size of target (18)
-Warning (10230): Verilog HDL assignment warning at oscillator.v(46): truncated value with size 32 to match size of target (13)
+Info (12128): Elaborating entity "pac" for hierarchy "oscillator_tb:OTB|oscillator:OSC0|pac:PAC0"
+Warning (10230): Verilog HDL assignment warning at pac.v(25): truncated value with size 32 to match size of target (12)
+Warning (10230): Verilog HDL assignment warning at pac.v(33): truncated value with size 32 to match size of target (13)
 Info (12128): Elaborating entity "sine_approx" for hierarchy "oscillator_tb:OTB|oscillator:OSC0|sine_approx:SA0"
 Warning (10230): Verilog HDL assignment warning at sine_approx.v(20): truncated value with size 32 to match size of target (16)
 Warning (10230): Verilog HDL assignment warning at sine_approx.v(36): truncated value with size 32 to match size of target (12)
@@ -316,8 +373,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/alts
     Info (12023): Found entity 1: altsyncram_ae71
 Info (12128): Elaborating entity "altsyncram_ae71" for hierarchy "oscillator_tb:OTB|oscillator:OSC0|sine_approx:SA0|sine:S1|altsyncram:altsyncram_component|altsyncram_ae71:auto_generated"
 Info: Quartus II 64-Bit Analysis & Elaboration was successful. 0 errors, 7 warnings
-    Info: Peak virtual memory: 432 megabytes
-    Info: Processing ended: Thu Apr 16 19:46:08 2015
+    Info: Peak virtual memory: 430 megabytes
+    Info: Processing ended: Tue Apr 21 15:04:10 2015
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
