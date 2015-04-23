@@ -11,6 +11,8 @@ module oscillator_tb;
 
 	oscillator OSC0(.clk(clk100), .k(key), .v(voltage));
 	
+	//synthesis translate_off
+	
 	//Generate a clock
 	always
 	begin
@@ -20,50 +22,57 @@ module oscillator_tb;
 	
 	//Sweep frequency
 	reg [`OSC_WIDTH-1:0] i = 1; 
-	integer real_f;
+	real real_f;
+	integer t1, t2 = 0;
+	reg `volt_t voltage_d1 = 0;
 	initial
 	begin
+		t1 = 0;
+		t2 = 0;
+		key <= 0;
+		#50 //Wait 5 ticks for everything to settle
 		for(i = 25; i <= 79; i = i + 1)
 		begin
 			@(posedge clk100) key <= i; 
 			$display("Key is is %d\n", i);
-			//find_frequency(clk100, voltage, real_f);
-			//$display("Frequency is %d\n", real_f);
+			//Wait for a falling edge (peak)
+			while(voltage >= voltage_d1)
+				@(posedge clk100);
+			t1 = $time;
+			//Wait for a rising edge (troff)
+			while(voltage <= voltage_d1)
+				@(posedge clk100);
+				
+			//Find our frequency error
+			real_f = 1/(($time-t1)*2e-9); //2e-9 because we only measure a half sine
+			$display("Frequency is %f, error is %f%%\n", real_f, frequency_error(key, real_f));
 		end
 
 	end
 	
-	//Use this task to work out the frequency of the sine wave coming out
-	task find_frequency;
-	input clk;
-	input `volt_t v;
-	output integer f;
-	
-	automatic integer t1, t2 = 0;
-	automatic reg `volt_t v_d1 = 0;
+	//This wee function takes key number and finds the correct frequency for error 
+	function real frequency_error;
+	input `key_t key;
+	input real real_f;
+	real correct_f;
+  real diff;
 	begin
-		//reg `volt_t v_d1 = 0;
-		//Hold in while loop while voltage is increasing
-		while( v >= v_d1)
-		begin
-			v_d1 = v;
-			@(posedge clk);
+		correct_f = ($signed(key) - 49)/$signed(12);
+		correct_f = 1/(2**-correct_f);
+		correct_f = 440 * correct_f;
+		
+		diff = correct_f - real_f;
+		diff = diff/correct_f;
+		
+		frequency_error = 100 * diff;
 		end
-		//Found a falling edge, take time and back off a clock tick
-		t1 = $time - 10;
-		
-		//Do the same, but find a troff
-		while( v <= v_d1)
-		begin
-			v_d1 = v;
-			@(posedge clk);
-		end
-		//Found a falling edge, take time and back off a clock tick
-		t2 = $time - 10;
-		
-		f = 1/(2*(t2*1e-9-t1*1e-9));
-		
+	endfunction
+	
+	//Use this process to create a delayed version of the voltage for looking for minima and maxima
+	always @(posedge clk100)
+	begin
+		voltage_d1 <= voltage;
 	end
-	endtask
+	//synthesis translate_on
 	
 endmodule
