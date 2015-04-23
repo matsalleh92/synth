@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="synth">
-		<CBX_INST_ENTRY INSTANCE_NAME="|synth|oscillator_tb:OTB|oscillator:OSC0|sine_approx:SA0|sine:S1|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_ae71.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|oscillator|sine_approx:SA0|sine:S1|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_ae71.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

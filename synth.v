@@ -5,5 +5,5 @@
 module synth (input clk);
 	//OTB oscillator_tb;
 	
-	oscillator_tb OTB();
+	//oscillator_tb OTB();
 endmodule

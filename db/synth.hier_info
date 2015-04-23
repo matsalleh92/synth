@@ -1,11 +1,4 @@
-|synth
-clk => ~NO_FANOUT~
-
-
-|synth|oscillator_tb:OTB
-
-
-|synth|oscillator_tb:OTB|oscillator:OSC0
+|oscillator
 clk => clk.IN2
 k[0] => Decoder0.IN6
 k[1] => Decoder0.IN5
@@ -32,7 +25,7 @@ v[14] <= sine_approx:SA0.amp
 v[15] <= sine_approx:SA0.amp
 
 
-|synth|oscillator_tb:OTB|oscillator:OSC0|pac:PAC0
+|oscillator|pac:PAC0
 clk => angle[0]~reg0.CLK
 clk => angle[1]~reg0.CLK
 clk => angle[2]~reg0.CLK
@@ -83,7 +76,7 @@ angle[11] <= angle[11]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 angle[12] <= angle[12]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|synth|oscillator_tb:OTB|oscillator:OSC0|sine_approx:SA0
+|oscillator|sine_approx:SA0
 clk => clk.IN1
 angle[0] => LessThan0.IN26
 angle[0] => Mod0.IN24
@@ -129,7 +122,7 @@ amp[14] <= amp[14]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 amp[15] <= amp[15]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|synth|oscillator_tb:OTB|oscillator:OSC0|sine_approx:SA0|sine:S1
+|oscillator|sine_approx:SA0|sine:S1
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -161,7 +154,7 @@ q[14] <= altsyncram:altsyncram_component.q_a
 q[15] <= altsyncram:altsyncram_component.q_a
 
 
-|synth|oscillator_tb:OTB|oscillator:OSC0|sine_approx:SA0|sine:S1|altsyncram:altsyncram_component
+|oscillator|sine_approx:SA0|sine:S1|altsyncram:altsyncram_component
 wren_a => ~NO_FANOUT~
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -230,7 +223,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|synth|oscillator_tb:OTB|oscillator:OSC0|sine_approx:SA0|sine:S1|altsyncram:altsyncram_component|altsyncram_ae71:auto_generated
+|oscillator|sine_approx:SA0|sine:S1|altsyncram:altsyncram_component|altsyncram_ae71:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR

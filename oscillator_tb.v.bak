@@ -1,14 +1,15 @@
 //This file is a test bench for the oscillator
 `include "constants.v"
+`timescale 1ns/1ns
 
 module oscillator_tb;
 
 	reg clk100;
-	reg [`OSC_F_WIDTH-1:0] frequency;
+	reg `key_t key;
 	
 	wire [`OSC_DEPTH-1:0] voltage;
 
-	OSC0 oscillator(.clk(clk100), .f(frequency), .v(voltage));
+	oscillator OSC0(.clk(clk100), .k(key), .v(voltage));
 	
 	//Generate a clock
 	always
@@ -18,14 +19,51 @@ module oscillator_tb;
 	end
 	
 	//Sweep frequency
-	reg i; 
+	reg [`OSC_WIDTH-1:0] i = 1; 
+	integer real_f;
 	initial
 	begin
-		for(i = 0; i < $size(frequency); i = i + 1)
+		for(i = 25; i <= 79; i = i + 1)
 		begin
-			@(posedge clk100) frequency <= i; 
-			#1000	;
+			@(posedge clk100) key <= i; 
+			$display("Key is is %d\n", i);
+			//find_frequency(clk100, voltage, real_f);
+			//$display("Frequency is %d\n", real_f);
 		end
+
 	end
+	
+	//Use this task to work out the frequency of the sine wave coming out
+	task find_frequency;
+	input clk;
+	input `volt_t v;
+	output integer f;
+	
+	automatic integer t1, t2 = 0;
+	automatic reg `volt_t v_d1 = 0;
+	begin
+		//reg `volt_t v_d1 = 0;
+		//Hold in while loop while voltage is increasing
+		while( v >= v_d1)
+		begin
+			v_d1 = v;
+			@(posedge clk);
+		end
+		//Found a falling edge, take time and back off a clock tick
+		t1 = $time - 10;
+		
+		//Do the same, but find a troff
+		while( v <= v_d1)
+		begin
+			v_d1 = v;
+			@(posedge clk);
+		end
+		//Found a falling edge, take time and back off a clock tick
+		t2 = $time - 10;
+		
+		f = 1/(2*(t2*1e-9-t1*1e-9));
+		
+	end
+	endtask
 	
 endmodule
