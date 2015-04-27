@@ -4,20 +4,22 @@
 
 module oscillator_tb;
 
-	reg clk100;
+	reg clk25;
 	reg `key_t key;
 	
 	wire [`OSC_DEPTH-1:0] voltage;
 
-	oscillator OSC0(.clk(clk100), .k(key), .v(voltage));
+	oscillator OSC0(.clk(clk25), .k(key), .v(voltage));
 	
 	//synthesis translate_off
+	
+	integer wait_time = `CLK_PRD/2;
 	
 	//Generate a clock
 	always
 	begin
-		#5 clk100 <= 1;
-		#5 clk100 <= 0; 
+		#wait_time clk25 <= 1;
+		#wait_time clk25 <= 0; 
 	end
 	
 	//Sweep frequency
@@ -32,29 +34,30 @@ module oscillator_tb;
 		t1 = 0;
 		t2 = 0;
 		key <= 0;
-		#50 //Wait 5 ticks for everything to settle
+		#400 //Wait 10 ticks for everything to settle
 		for(i = 25; i <= 76; i = i + 1)
 		begin
-			@(posedge clk100) key <= i; 
+			@(posedge clk25) key <= i; 
 			//$display("Key is is %d\n", i);
 			//We should wait a couple of ticks before continuing
-			#50
+			#80
 			//Wait for a falling edge (peak)
 			while(voltage >= voltage_d1 || !(voltage > q3))
-				@(posedge clk100);
+				@(posedge clk25);
 			t1 = $time;
 			//Wait for a rising edge (troff)
 			while(voltage <= voltage_d1 || !(voltage < q1))
-				@(posedge clk100);
+				@(posedge clk25);
 				
 			//Find our frequency error
 			real_f = 1/(($time-t1)*2e-9); //2e-9 because we only measure a half sine
 			frequency_error(key, real_f, error);
 			
 			//Check the actual error
-			if(error > 5)
+			if(error > 5 || error < -5)
 			begin
-				$stop("Exceeded freq tol\n");
+				$display("Exceeded freq tolerance\n");
+				$stop;
 			end
 		end
 		
@@ -89,7 +92,7 @@ module oscillator_tb;
 	endtask
 	
 	//Use this process to create a delayed version of the voltage for looking for minima and maxima
-	always @(posedge clk100)
+	always @(posedge clk25)
 	begin
 		voltage_d1 <= voltage;
 		voltage_d2 <= voltage_d1;
