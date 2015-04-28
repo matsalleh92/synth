@@ -2,11 +2,9 @@
 
 //Phase accumulator
 
-module pac(input clk, input `osc2pac_t f, output reg `pac2sine_approx_t angle = 0);
+module pac(input clk, input `osc2pac_t f, input [`PAC_MAX_WIDTH-1:0] pac_max, output reg `pac2sine_approx_t angle = 0);
 
 	//Generate a clock enable first
-
-	integer counter_max = `CLK_FREQ/`PAC_FREQ;
 	
 	reg [11:0] counter = 0; //Arbitrirarily chosen 8 bit wide counter for counting
 	
@@ -14,7 +12,7 @@ module pac(input clk, input `osc2pac_t f, output reg `pac2sine_approx_t angle = 
 	
 	always @(posedge clk)
 	begin
-		if(counter == counter_max)
+		if(counter == pac_max-1)
 		begin
 			counter <= 0;
 			ce <= 1;

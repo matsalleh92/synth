@@ -1,0 +1,7 @@
+`include "constants.v"
+
+module voltage_control(input gate, input `volt_t in, output `volt_t out);
+
+	assign out = gate?in/8:0;
+	
+endmodule

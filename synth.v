@@ -27,10 +27,10 @@ inout sda
 	
 	//Instantiate our oscillator to generate a constant sine wave
 	wire voltage_dv;
-	wire `volt_t osc2adio;
+	wire `volt_t osc2gate, gate2adio;
 	oscillator osc0(.clk(clk18_4),
 	.k(key2osc),
-	.v(osc2adio),
+	.v(osc2gate),
 	.dv(voltage_dv));
 	
 	//Reset generator
@@ -50,6 +50,8 @@ inout sda
 	.I2C_SDAT(sda)
 	);
 	
+	//Gate
+	voltage_control(.gate(1), .in(osc2gate), .out(gate2adio));
 	
 	//Instantiate Terrasic's terrible terrible DAC I/F
 	adio_codec ad0(
@@ -58,7 +60,7 @@ inout sda
 	.oAUD_BCK(fpga2dac.bclk),
 	.iCLK_18_4(clk18_4),
 	.iRST_N(1),
-	.sample(osc2adio)
+	.sample(gate2adio)
 	);
 	//Assign our xck
 	assign fpga2dac.xck = clk18_4;

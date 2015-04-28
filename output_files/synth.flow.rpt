@@ -1,5 +1,5 @@
 Flow report for synth
-Tue Apr 28 08:50:51 2015
+Tue Apr 28 15:36:54 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,20 +40,20 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Tue Apr 28 08:50:51 2015           ;
+; Flow Status                        ; Successful - Tue Apr 28 15:36:54 2015           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; synth                                           ;
 ; Top-level Entity Name              ; synth                                           ;
 ; Family                             ; Cyclone II                                      ;
 ; Device                             ; EP2C20F484C7                                    ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 232 / 18,752 ( 1 % )                            ;
-;     Total combinational functions  ; 230 / 18,752 ( 1 % )                            ;
-;     Dedicated logic registers      ; 115 / 18,752 ( < 1 % )                          ;
-; Total registers                    ; 115                                             ;
+; Total logic elements               ; 164 / 18,752 ( < 1 % )                          ;
+;     Total combinational functions  ; 161 / 18,752 ( < 1 % )                          ;
+;     Dedicated logic registers      ; 109 / 18,752 ( < 1 % )                          ;
+; Total registers                    ; 109                                             ;
 ; Total pins                         ; 7 / 315 ( 2 % )                                 ;
 ; Total virtual pins                 ; 0                                               ;
-; Total memory bits                  ; 65,536 / 239,616 ( 27 % )                       ;
+; Total memory bits                  ; 6,144 / 239,616 ( 3 % )                         ;
 ; Embedded Multiplier 9-bit elements ; 0 / 52 ( 0 % )                                  ;
 ; Total PLLs                         ; 1 / 4 ( 25 % )                                  ;
 +------------------------------------+-------------------------------------------------+
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/28/2015 08:50:39 ;
+; Start date & time ; 04/28/2015 15:36:43 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; synth               ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +--------------------------------------+---------------------------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                                   ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+---------------------------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 70465358159659.143020743909652                          ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 70465358159659.143023180310048                          ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                      ; --            ; --          ; oscillator_tb  ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; oscillator_tb                                           ; --            ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                             ; --            ; --          ; eda_simulation ;
@@ -88,6 +88,8 @@ applicable agreement for further details.
 ; IP_TOOL_NAME                         ; ALTPLL                                                  ; --            ; --          ; --             ;
 ; IP_TOOL_NAME                         ; ROM: 1-PORT                                             ; --            ; --          ; --             ;
 ; IP_TOOL_NAME                         ; ALTPLL                                                  ; --            ; --          ; --             ;
+; IP_TOOL_NAME                         ; RAM: 1-PORT                                             ; --            ; --          ; --             ;
+; IP_TOOL_VERSION                      ; 13.0                                                    ; --            ; --          ; --             ;
 ; IP_TOOL_VERSION                      ; 13.0                                                    ; --            ; --          ; --             ;
 ; IP_TOOL_VERSION                      ; 13.0                                                    ; --            ; --          ; --             ;
 ; IP_TOOL_VERSION                      ; 13.0                                                    ; --            ; --          ; --             ;
@@ -98,6 +100,7 @@ applicable agreement for further details.
 ; MISC_FILE                            ; sine_bb.v                                               ; --            ; --          ; --             ;
 ; MISC_FILE                            ; pll_50i_18_4o_25o_bb.v                                  ; --            ; --          ; --             ;
 ; MISC_FILE                            ; pll_50i_18_4o_25o.ppf                                   ; --            ; --          ; --             ;
+; MISC_FILE                            ; quater_sine_bb.v                                        ; --            ; --          ; --             ;
 ; PARTITION_COLOR                      ; 16764057                                                ; --            ; --          ; Top            ;
 ; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT_AND_ROUTING                                   ; --            ; --          ; Top            ;
 ; PARTITION_NETLIST_TYPE               ; SOURCE                                                  ; --            ; --          ; Top            ;
@@ -116,12 +119,12 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:02     ; 1.0                     ; 450 MB              ; 00:00:02                           ;
-; Fitter                    ; 00:00:04     ; 1.0                     ; 623 MB              ; 00:00:04                           ;
-; Assembler                 ; 00:00:02     ; 1.0                     ; 404 MB              ; 00:00:01                           ;
-; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 390 MB              ; 00:00:01                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 369 MB              ; 00:00:00                           ;
-; Total                     ; 00:00:10     ; --                      ; --                  ; 00:00:08                           ;
+; Analysis & Synthesis      ; 00:00:02     ; 1.0                     ; 450 MB              ; 00:00:01                           ;
+; Fitter                    ; 00:00:03     ; 1.0                     ; 627 MB              ; 00:00:04                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 418 MB              ; 00:00:01                           ;
+; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 389 MB              ; 00:00:01                           ;
+; EDA Netlist Writer        ; 00:00:00     ; 1.0                     ; 369 MB              ; 00:00:00                           ;
+; Total                     ; 00:00:07     ; --                      ; --                  ; 00:00:07                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

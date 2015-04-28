@@ -4,12 +4,12 @@
 
 module oscillator_tb;
 
-	reg clk25;
+	reg clk;
 	reg `key_t key;
 	
 	wire [`OSC_DEPTH-1:0] voltage;
 
-	oscillator OSC0(.clk(clk25), .k(key), .v(voltage));
+	oscillator OSC0(.clk(clk), .k(key), .v(voltage));
 	
 	//synthesis translate_off
 	
@@ -18,8 +18,8 @@ module oscillator_tb;
 	//Generate a clock
 	always
 	begin
-		#wait_time clk25 <= 1;
-		#wait_time clk25 <= 0; 
+		#wait_time clk <= 1;
+		#wait_time clk <= 0; 
 	end
 	
 	//Sweep frequency
@@ -35,19 +35,19 @@ module oscillator_tb;
 		t2 = 0;
 		key <= 0;
 		#400 //Wait 10 ticks for everything to settle
-		for(i = 25; i <= 76; i = i + 1)
+		for(i = 76; i >= 25; i = i - 1)
 		begin
-			@(posedge clk25) key <= i; 
+			@(posedge clk) key <= i; 
 			//$display("Key is is %d\n", i);
 			//We should wait a couple of ticks before continuing
-			#80
+			#100
 			//Wait for a falling edge (peak)
 			while(voltage >= voltage_d1 || !(voltage > q3))
-				@(posedge clk25);
+				@(posedge clk);
 			t1 = $time;
 			//Wait for a rising edge (troff)
 			while(voltage <= voltage_d1 || !(voltage < q1))
-				@(posedge clk25);
+				@(posedge clk);
 				
 			//Find our frequency error
 			real_f = 1/(($time-t1)*2e-9); //2e-9 because we only measure a half sine
@@ -92,7 +92,7 @@ module oscillator_tb;
 	endtask
 	
 	//Use this process to create a delayed version of the voltage for looking for minima and maxima
-	always @(posedge clk25)
+	always @(posedge clk)
 	begin
 		voltage_d1 <= voltage;
 		voltage_d2 <= voltage_d1;
