@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C20F484C7
-set_global_assignment -name TOP_LEVEL_ENTITY oscillator
+set_global_assignment -name TOP_LEVEL_ENTITY synth
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:37:42  APRIL 14, 2015"
 set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
@@ -48,19 +48,45 @@ set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
-set_global_assignment -name QIP_FILE pll_50_100o.qip
-set_global_assignment -name QIP_FILE sine.qip
-set_global_assignment -name VERILOG_FILE sine_approx.v
-set_global_assignment -name VERILOG_FILE synth.v
-set_global_assignment -name VERILOG_FILE constants.v
-set_global_assignment -name VERILOG_FILE oscillator.v
 set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS OFF
 set_global_assignment -name VERILOG_CONSTANT_LOOP_LIMIT 500000000
 set_global_assignment -name EDA_TIME_SCALE "1 ns" -section_id eda_simulation
 set_global_assignment -name SEARCH_PATH "c:\\altera\\13.0sp1\\modelsim_ase\\altera\\verilog\\altera_mf"
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH oscillator_tb -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME oscillator_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id oscillator_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME oscillator_tb -section_id oscillator_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE oscillator_tb.v -section_id oscillator_tb
+set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
+set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name VERILOG_FILE I2C_Controller.v
+set_global_assignment -name VERILOG_FILE I2C_AV_Config.v
+set_global_assignment -name VERILOG_FILE pll_50i_18_4o_25o.v
+set_global_assignment -name VERILOG_FILE adio_codec.v
+set_global_assignment -name QIP_FILE pll_50_100o.qip
+set_global_assignment -name QIP_FILE sine.qip
+set_global_assignment -name VERILOG_FILE sine_approx.v
+set_global_assignment -name VERILOG_FILE synth.v
+set_global_assignment -name SYSTEMVERILOG_FILE oscillator.v
 set_global_assignment -name VERILOG_FILE pac.v
 set_global_assignment -name VERILOG_TEST_BENCH_FILE oscillator_tb.v
+set_global_assignment -name QIP_FILE pll_50i_18_4o_25o.qip
+set_global_assignment -name SYSTEMVERILOG_FILE constants.v
+set_global_assignment -name VERILOG_FILE oscillator.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_location_assignment PIN_L1 -to clk50
+set_location_assignment PIN_B5 -to fpga2dac.data
+set_location_assignment PIN_A5 -to fpga2dac.lrclk
+set_location_assignment PIN_A3 -to scl
+set_location_assignment PIN_B3 -to sda
+set_location_assignment PIN_B4 -to fpga2dac.xck
+set_global_assignment -name SDC_FILE synth.sdc
+set_location_assignment PIN_A4 -to fpga2dac.bclk
+set_global_assignment -name VERILOG_FILE arpeggio.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

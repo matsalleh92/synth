@@ -12,16 +12,13 @@ input key4_on,
 input	[1:0]	iSrc_Select,
 input			iCLK_18_4,
 input			iRST_N,
-
-input `osc2dac_t sample,
-
 input   [15:0]	sound1,
 input   [15:0]	sound2,
 input   [15:0]	sound3,
 input   [15:0]	sound4,
 
-input           instru
-
+input           instru,
+input `volt_t sample
 						);				
 
 parameter	REF_CLK			=	18432000;	//	18.432	MHz
@@ -148,7 +145,9 @@ end
 		else
 			SEL_Cont	<=	SEL_Cont+1;
 	end
-	assign	oAUD_DATA	=	sample[~SEL_Cont]	:0;
+	//assign	oAUD_DATA	=	((key4_on|key3_on|key2_on|key1_on) && (iSrc_Select==SIN_SANPLE))	?	sound_o[~SEL_Cont]	:0;
+	//CHris here,
+	assign oAUD_DATA = sample[~SEL_Cont];
 
 //////////Ramp address generater//////////////
 	reg  [15:0]ramp1;
@@ -199,7 +198,7 @@ end
 	wire [5:0]ramp4_sin=(!instru)?ramp4[15:10]:0;
 
 ////////String-wave Timbre///////
-	wave_gen_string r1(
+/*	wave_gen_string r1(
 		.ramp(ramp1_ramp),
 		.music_o(music1_ramp)
 	);
@@ -232,6 +231,6 @@ end
 	wave_gen_brass s4(
 		.ramp(ramp4_sin),
 		.music_o(music4_sin)
-	);
+	);*/
 
 endmodule

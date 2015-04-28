@@ -1,7 +1,8 @@
 //(c) Chris Adams 2015 - Uinversity of Leeds.
 
 //Constants
-`define CLK_FREQ 100e6
+`define CLK_FREQ 18.432e6
+`define CLK_PRD 54 //in ns
 `define PAC_FREQ 40e3
 
 //Params for communicating with oscillator
@@ -26,3 +27,10 @@
 `define pac2sine_approx_t [`OSC_WIDTH-1:0]
 `define volt_t [`OSC_DEPTH-1:0]
 `define osc2pac_t [8:0]
+
+typedef struct packed {
+	logic data;
+	logic lrclk;
+	logic bclk;
+	logic xck;
+} fpga2dac_t;

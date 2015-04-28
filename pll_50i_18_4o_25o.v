@@ -37,15 +37,24 @@
 `timescale 1 ps / 1 ps
 // synopsys translate_on
 module pll_50i_18_4o_25o (
+	areset,
 	inclk0,
 	c0,
 	c1,
 	locked);
 
+	input	  areset;
 	input	  inclk0;
 	output	  c0;
 	output	  c1;
 	output	  locked;
+`ifndef ALTERA_RESERVED_QIS
+// synopsys translate_off
+`endif
+	tri0	  areset;
+`ifndef ALTERA_RESERVED_QIS
+// synopsys translate_on
+`endif
 
 	wire [5:0] sub_wire0;
 	wire  sub_wire2;
@@ -59,11 +68,11 @@ module pll_50i_18_4o_25o (
 	wire [1:0] sub_wire5 = {sub_wire6, sub_wire4};
 
 	altpll	altpll_component (
+				.areset (areset),
 				.inclk (sub_wire5),
 				.clk (sub_wire0),
 				.locked (sub_wire2),
 				.activeclock (),
-				.areset (1'b0),
 				.clkbad (),
 				.clkena ({6{1'b1}}),
 				.clkloss (),
@@ -114,7 +123,7 @@ module pll_50i_18_4o_25o (
 		altpll_component.lpm_type = "altpll",
 		altpll_component.operation_mode = "NORMAL",
 		altpll_component.port_activeclock = "PORT_UNUSED",
-		altpll_component.port_areset = "PORT_UNUSED",
+		altpll_component.port_areset = "PORT_USED",
 		altpll_component.port_clkbad0 = "PORT_UNUSED",
 		altpll_component.port_clkbad1 = "PORT_UNUSED",
 		altpll_component.port_clkloss = "PORT_UNUSED",
@@ -226,7 +235,7 @@ endmodule
 // Retrieval info: PRIVATE: PHASE_SHIFT_UNIT0 STRING "deg"
 // Retrieval info: PRIVATE: PHASE_SHIFT_UNIT1 STRING "deg"
 // Retrieval info: PRIVATE: PLL_ADVANCED_PARAM_CHECK STRING "0"
-// Retrieval info: PRIVATE: PLL_ARESET_CHECK STRING "0"
+// Retrieval info: PRIVATE: PLL_ARESET_CHECK STRING "1"
 // Retrieval info: PRIVATE: PLL_AUTOPLL_CHECK NUMERIC "1"
 // Retrieval info: PRIVATE: PLL_ENA_CHECK STRING "0"
 // Retrieval info: PRIVATE: PLL_ENHPLL_CHECK NUMERIC "0"
@@ -275,7 +284,7 @@ endmodule
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altpll"
 // Retrieval info: CONSTANT: OPERATION_MODE STRING "NORMAL"
 // Retrieval info: CONSTANT: PORT_ACTIVECLOCK STRING "PORT_UNUSED"
-// Retrieval info: CONSTANT: PORT_ARESET STRING "PORT_UNUSED"
+// Retrieval info: CONSTANT: PORT_ARESET STRING "PORT_USED"
 // Retrieval info: CONSTANT: PORT_CLKBAD0 STRING "PORT_UNUSED"
 // Retrieval info: CONSTANT: PORT_CLKBAD1 STRING "PORT_UNUSED"
 // Retrieval info: CONSTANT: PORT_CLKLOSS STRING "PORT_UNUSED"
@@ -318,10 +327,12 @@ endmodule
 // Retrieval info: CONSTANT: VALID_LOCK_MULTIPLIER NUMERIC "1"
 // Retrieval info: USED_PORT: @clk 0 0 6 0 OUTPUT_CLK_EXT VCC "@clk[5..0]"
 // Retrieval info: USED_PORT: @extclk 0 0 4 0 OUTPUT_CLK_EXT VCC "@extclk[3..0]"
+// Retrieval info: USED_PORT: areset 0 0 0 0 INPUT GND "areset"
 // Retrieval info: USED_PORT: c0 0 0 0 0 OUTPUT_CLK_EXT VCC "c0"
 // Retrieval info: USED_PORT: c1 0 0 0 0 OUTPUT_CLK_EXT VCC "c1"
 // Retrieval info: USED_PORT: inclk0 0 0 0 0 INPUT_CLK_EXT GND "inclk0"
 // Retrieval info: USED_PORT: locked 0 0 0 0 OUTPUT GND "locked"
+// Retrieval info: CONNECT: @areset 0 0 0 0 areset 0 0 0 0
 // Retrieval info: CONNECT: @inclk 0 0 1 1 GND 0 0 0 0
 // Retrieval info: CONNECT: @inclk 0 0 1 0 inclk0 0 0 0 0
 // Retrieval info: CONNECT: c0 0 0 0 0 @clk 0 0 1 0

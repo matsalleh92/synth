@@ -78,7 +78,7 @@ module oscillator(input clk, input `key_t k, output `volt_t v, output dv);
 	//Link our pac to a sine approximator
 	//Voltage not directly linked because needs to ba analysed for change for cross clock stuff
 	reg `volt_t v_internal, v_internal_d1;
-	sine_approx SA0(.clk(clk), .angle(angle), .amp(v_internal));
+	sine_approx SA0(.clk(clk), .angle(angle), .amp(v));
 	
 	/*Use this process to detect a change in the amplitude
 	and then fill up a SR to feed to data valid*/
@@ -92,7 +92,7 @@ module oscillator(input clk, input `key_t k, output `volt_t v, output dv);
 		
 		if(v_internal_d1 != v_internal)//Change detected, reset our SR
 		begin
-			sr <= "000111"; //This gives 3 ticks for the data to arrive at the FF in slower domain, and two three for DV
+			sr <= 6'b000111; //This gives 3 ticks for the data to arrive at the FF in slower domain, and two three for DV
 		end
 		else
 		begin
@@ -107,5 +107,8 @@ module oscillator(input clk, input `key_t k, output `volt_t v, output dv);
 	//Link DV to MSB of SR
 	
 	assign dv = sr[sr_size-1];
+	
+	//Cba couble buffering for meta stability
+	//assign v = v_internal_d1;
 	
 endmodule
