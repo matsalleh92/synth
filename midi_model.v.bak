@@ -1,0 +1,11 @@
+//Really basic model for testing our MIDI UART
+
+//Will transmit 10101010 with start and stop bits
+
+module midi_model(output reg tx);
+
+	//synthesis translate off
+	
+	//synthesis translate on
+
+endmodule

@@ -21,6 +21,8 @@ inout sda
 	.c1(clk25),
 	.locked(locked));
 	
+	//Midi I/F. Currently unused
+	
 	//The arpeggiator just for testing
 	wire `key_t key2osc;
 	arpeggio(.clk25(clk25), .k(key2osc));

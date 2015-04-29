@@ -33,6 +33,7 @@
 
 //Params for MIDI I/F
 `define KEY_WIDTH 7
+`define NKEYS 88
 
 //Definition of types
 `define key_t [`KEY_WIDTH-1:0]

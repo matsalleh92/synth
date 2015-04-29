@@ -1,0 +1,7 @@
+`include "constants.v"
+
+
+//Top level test bench for whole synth. Plays keys over 
+module synth_tb;
+
+endmodule
