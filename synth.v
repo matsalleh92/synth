@@ -35,9 +35,6 @@ inout sda
 	.v(osc2gate),
 	.dv(voltage_dv));
 	
-	//Reset generator
-	reg [7:0]DELAY;
-	
 	//Oscillator runs at a different clock frequency to DAC I/F so we should use a FIFO
 	//No overflow risk since, samples come out very slow.
 	//24/04 - Use edge detect for valid signal (requries pipelining) or DV from oscillator?

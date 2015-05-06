@@ -1,0 +1,39 @@
+`include "constants.v"
+
+module polyphonic(input clk, output reg `volt_t volts [`NKEYS-1:0]);
+	
+	
+	//This wire array links our PACs to our TMUX
+	wire `pac2sine_approx_t angles [0:`NKEYS-1];
+	
+	generate
+		genvar g;
+		for(g = 0; g < `NKEYS; g = g + 1)
+		begin : g0
+			pac_container #(.key(g)) pc(.clk(clk), .angle(angles[g]));
+		end
+	endgenerate
+	
+	//Single instance of the SINE approximator 
+	//that's going to get absolute detroyed. ALL THE READS. SUCH RAM.
+	reg `pac2sine_approx_t this_angle;
+	wire `volt_t this_amp;
+	sine_approx SA0(.clk(clk), .angle(this_angle), .amp(this_amp));
+	
+	//TMUX here, need to balance a 3 tick latency
+	reg [6:0] pointer_d5, pointer_d4, pointer_d3, pointer_d2, pointer_d1, pointer = 0; //This points to the correct element of the array for getting address
+	always @(posedge clk)
+	begin
+		pointer <= pointer==`NKEYS-1?0:pointer + 1; //Counter
+		//Feed our anlge request into the sine approx.
+		this_angle <= angles[pointer];
+		//Buffer the result pointer 4 times
+		pointer_d5 <= pointer_d4;
+		pointer_d4 <= pointer_d3;
+		pointer_d3 <= pointer_d2;
+		pointer_d2 <= pointer_d1;
+		pointer_d1 <= pointer;
+		volts[pointer_d5] <= this_amp;
+	end
+	
+endmodule
